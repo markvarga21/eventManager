@@ -1,0 +1,68 @@
+# Eseménykezelő applikáció ötletek
+
+- alapvető CRUD műveletek biztosítása
+- események tag-elése
+  - ezáltal interest alapján lehetne ajánlani a felhasználónak eseményeket
+  - multi-class classification alkalmas lehet erre (releváns érdeklődési körök megtalálásához)
+- lehet érdeklődni és menni egy esemény-re (`Going` és `Interested`)
+  - Facebook-hoz hasonlóan
+- jegy eladási rendszer
+  - a jegyek design-os NFT-k lennének, amik kötődnének az adott eseményhez
+    - a jegyeket telefonnal lehetne igazolni a helyszínen, pl. NFC-vel, mintha egy karszalag lenne
+  - blokklánc fizetési rendszer alkalmazása, ahol alkalmazni lehetne az **Event driven** architektúrát
+- esemény értesítési alrendszer
+  - email, push notification (mobilalkalmazás esetén), telefon stb.
+- importálás más platformok eseményei közül
+  - pl. Facebook, stb.
+  - API kérésekkel vagy akár Web scraping-gel ki lehetne nyerni a versenytársak eseményekeit
+- organizációs és felhasználói események (személyes)
+  - **organizációs események**: pl. a Debreceni Egyetem által rendezett esemény
+  - **felhasználói események**: pl. egy felhasználó által szervezett esemény
+- group chat-ek közös társaságok kialakításához
+  - **eseménytípusonként** vagy **eseményenként** esetleg egy fórum, chat, stb.
+- korhoz kötött események
+  - pl. gyerekeknek és felnőtteknek események
+  - ne lehessen jelentkezni egy eseményre, ha nem vagyunk a megfelelő korosztályból
+- authorization és authentication
+  - **authentication lehetőségek**: email, Google, Facebook, Twitter, GitHub, stb.
+  - **authorization**: eleinte mindenki `user` jogosultsággal rendelkezik, miután pedig készít egy eseményt, akkor `organizer` jogosultságot kap (akik további `organizer` jogosultságot adhatnak másoknak)
+    - esetleg `admin` jogosultság is lehetne, aki tudja kezelni a felhasználókat, eseményeket, stb.
+- security, encryption service
+- ajánló rendszer az elején?
+  - pl. egy kérdőív kitöltése után, vagy egy asszisztens használatával (`llama2`)
+  - vagy egy kis teszt kitöltése után
+- dress code
+  - pl. elegáns, sportos, stb.
+- fellépők listája
+- események értékelése
+  - upvotes, downvotes (9GAG szerű)
+- külön page az eseményeknek, ahol a résztvevők tudnak kommunikálni
+  - pl. Facebook pages szerű
+- térkép, élő térkép alapú esemény keresés
+  - Google Maps API, vagy akár épületen belül információk visszaadása
+- adott eseményhez tartozó sztorik az esemény oldalán
+- live feed és/vagy stream az eseményről
+  - pl. Twitter szerű
+- az esemény bizonyos helyein lennének QR kódok, ahol közös képeket/videókat
+  - lenne egy korlátozás, hogy pl. 5 képet lehessen feltölteni egy helyszínről személyenként (hogy elosztva legyenek arányosak)
+- előre design-olt meghívó küldése különböző platformokra
+  - pl. Facebook, Instagram, Twitter, stb.
+- offline működés biztosítása
+- a szervezők tudjanak pollokat/kérdőíveket csinálni, hogy a közösség milyen eseményeken szeretne részt venni
+  - akár egy adott eseményen belül is lehessen kérdőíveket és pollokat csinálni
+    - pl. hogy milyen zenét szeretnének hallani, milyen italok legyenek stb.
+- gamification - Leaderboard, badge-eket kapjanak bizonyos dolgokért, legyenek giveaway-ek meg versenyek
+  - az eseményeken belül
+- eseményekhez tartozó playlistek
+  - pl. Spotify, YouTube, stb.
+- gyakori kérdésekre support team
+  - esetleg ide is lehetne integrálni a `llama2`
+- eseményre regisztrálni lehessen több személlyel is
+  - pl. egy baráti társasággal
+- helykorlátozások
+  - pl. egy eseményen belül csak 100 ember lehessen, es ezt meg lehetne valósítani egy jelentkezési alrendszerrel, ami követhetné az **Event driven** architektúrát
+- saját felhasználói profil modosítása és testreszabása
+- eseményekhez tartozó szponzorok
+  - pl. egy fesztivál esetén
+- naptárban lehessen kezelni a felhasználó eseményeit
+  - pl. Google Calendar, Apple Calendar, stb.
