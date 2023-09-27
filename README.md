@@ -66,3 +66,4 @@
   - pl. egy fesztivál esetén
 - naptárban lehessen kezelni a felhasználó eseményeit
   - pl. Google Calendar, Apple Calendar, stb.
+- event helyszínén belüli térkép, hogy kimerre van, azon okból kifolyólag, hogy ha szétszéledt volna a társaság egy tagja, vissza tudjon találni a többiekhez
