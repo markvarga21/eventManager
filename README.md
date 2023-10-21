@@ -1,69 +1,101 @@
-# Eseménykezelő applikáció ötletek
+# CONNECT
 
-- alapvető CRUD műveletek biztosítása
-- események tag-elése
-  - ezáltal interest alapján lehetne ajánlani a felhasználónak eseményeket
-  - multi-class classification alkalmas lehet erre (releváns érdeklődési körök megtalálásához)
-- lehet érdeklődni és menni egy esemény-re (`Going` és `Interested`)
-  - Facebook-hoz hasonlóan
-- jegy eladási rendszer
-  - a jegyek design-os NFT-k lennének, amik kötődnének az adott eseményhez
-    - a jegyeket telefonnal lehetne igazolni a helyszínen, pl. NFC-vel, mintha egy karszalag lenne
-  - blokklánc fizetési rendszer alkalmazása, ahol alkalmazni lehetne az **Event driven** architektúrát
-- esemény értesítési alrendszer
-  - email, push notification (mobilalkalmazás esetén), telefon stb.
-- importálás más platformok eseményei közül
-  - pl. Facebook, stb.
-  - API kérésekkel vagy akár Web scraping-gel ki lehetne nyerni a versenytársak eseményekeit
-- organizációs és felhasználói események (személyes)
-  - **organizációs események**: pl. a Debreceni Egyetem által rendezett esemény
-  - **felhasználói események**: pl. egy felhasználó által szervezett esemény
-- group chat-ek közös társaságok kialakításához
-  - **eseménytípusonként** vagy **eseményenként** esetleg egy fórum, chat, stb.
-- korhoz kötött események
-  - pl. gyerekeknek és felnőtteknek események
-  - ne lehessen jelentkezni egy eseményre, ha nem vagyunk a megfelelő korosztályból
-- authorization és authentication
-  - **authentication lehetőségek**: email, Google, Facebook, Twitter, GitHub, stb.
-  - **authorization**: eleinte mindenki `user` jogosultsággal rendelkezik, miután pedig készít egy eseményt, akkor `organizer` jogosultságot kap (akik további `organizer` jogosultságot adhatnak másoknak)
-    - esetleg `admin` jogosultság is lehetne, aki tudja kezelni a felhasználókat, eseményeket, stb.
-- security, encryption service
-- ajánló rendszer az elején?
-  - pl. egy kérdőív kitöltése után, vagy egy asszisztens használatával (`llama2`)
-  - vagy egy kis teszt kitöltése után
-- dress code
-  - pl. elegáns, sportos, stb.
-- fellépők listája
-- események értékelése
-  - upvotes, downvotes (9GAG szerű)
-- külön page az eseményeknek, ahol a résztvevők tudnak kommunikálni
-  - pl. Facebook pages szerű
-- térkép, élő térkép alapú esemény keresés
-  - Google Maps API, vagy akár épületen belül információk visszaadása
-- adott eseményhez tartozó sztorik az esemény oldalán
-- live feed és/vagy stream az eseményről
-  - pl. Twitter szerű
-- az esemény bizonyos helyein lennének QR kódok, ahol közös képeket/videókat
-  - lenne egy korlátozás, hogy pl. 5 képet lehessen feltölteni egy helyszínről személyenként (hogy elosztva legyenek arányosak)
-- előre design-olt meghívó küldése különböző platformokra
-  - pl. Facebook, Instagram, Twitter, stb.
-- offline működés biztosítása
-- a szervezők tudjanak pollokat/kérdőíveket csinálni, hogy a közösség milyen eseményeken szeretne részt venni
-  - akár egy adott eseményen belül is lehessen kérdőíveket és pollokat csinálni
-    - pl. hogy milyen zenét szeretnének hallani, milyen italok legyenek stb.
-- gamification - Leaderboard, badge-eket kapjanak bizonyos dolgokért, legyenek giveaway-ek meg versenyek
-  - az eseményeken belül
-- eseményekhez tartozó playlistek
-  - pl. Spotify, YouTube, stb.
-- gyakori kérdésekre support team
-  - esetleg ide is lehetne integrálni a `llama2`
-- eseményre regisztrálni lehessen több személlyel is
-  - pl. egy baráti társasággal
-- helykorlátozások
-  - pl. egy eseményen belül csak 100 ember lehessen, es ezt meg lehetne valósítani egy jelentkezési alrendszerrel, ami követhetné az **Event driven** architektúrát
-- saját felhasználói profil modosítása és testreszabása
-- eseményekhez tartozó szponzorok
-  - pl. egy fesztivál esetén
-- naptárban lehessen kezelni a felhasználó eseményeit
-  - pl. Google Calendar, Apple Calendar, stb.
-- event helyszínén belüli térkép, hogy kimerre van, azon okból kifolyólag, hogy ha szétszéledt volna a társaság egy tagja, vissza tudjon találni a többiekhez
+This repository holds the software architecture of the out event manager application named **CONNECT**. Also, it provides brief descriptions about each service, their usages and functionalities and the upcoming problems with it.
+
+---
+
+## CRUD service (_microservice_)
+
+- It enables authorized/logged in users to create, read, update and delete events.
+- Users can have two states for an event: `Going` or `Interested` (mostly like Facebook)
+- There would be two types of events:
+  - **Organization events**: events made by organizations like the University of Debrecen, or the City of Debrecen etc.
+  - **User events**: these are much smaller events, for example if a friend group is going out or anything else, they could arrange it using this applications built-in features, thus easing the whole management (if the friend group is large).
+- Age restricted events.
+  - for example there could be events specifically made only for children and some events, like action events could be restricted only to adults.
+  - thus, children could not register no non-children events
+- There could be a list of the performers of the event.
+- Users can also rate or un-rate events.
+  - up- and down votes like 9GAG
+- There will be separate pages for every event, where the registered users, organizers can talk with each other.
+  - Facebook event page like
+- Maximum personnel capacity for an event for safety reasons.
+- In some situations, performers can share the album or the titles of the playlist they've played on the event.
+  - i.e Spotify, YouTube etc.
+
+## User management service (_microservice_)
+
+- Simple single users, or multiple can be registered for an event (i.e friend groups, couples, families etc.)
+  - this also provides the possibility to register to an event
+- Users can alter their data and to make CRUD operations on their personal information.
+
+## Recommender service (_microservice_)
+
+- The events will be tagged, for further usages, for example when determining a users specific interest.
+  - at first, upon first login, there could be a form, where the user can fill in his/her interest areas and other important things, which will help to determine his/her interests
+    - this can also be achieved using the **Virtual assistant microservice**
+- Also, there will be a multi-class classification model, which helps to determine what interests does the person have.
+- There could be a dress code for every event.
+  - i.e formal, informal, business, business casual etc.
+
+## Ticketing service (_event driven_)
+
+- The tickets could be an NFT (Non Fungible Token) illustration related to the theme of the actual event.
+- Users can represent their tickets only by holding their phone close to a machine, using NFC technology.
+  - basically, it would work like a hand-band
+- The transactions could be based on a blockchain implementation
+
+## Notification service (_microservice_)
+
+- This service would inform users about upcoming events via SMS, email, push notifications (if mobile app is used and already implemented) etc.
+  - it can use already made services when sending SMS or email
+- This service also provides users to send custom designed invites to their friends or to anyone.
+  - lets user to send or share event invitations via Facebook, Instagram, Twitter, simple email or else
+
+## Import-export service (_microservice_)
+
+- **Exporting**: there could be a functionality for exporting events to the Google or Apple Calendar or to other related application.
+- **Importing**: user could import already made events from other platforms like Facebook.
+  - this would use the official Facebook API, or web scraping technologies
+
+## Authentication-authorization service (_microservice_)
+
+- The application would have an authentication service, thus allowing only registered users signing up to the events.
+  - for this, users can sign up/in using their email addresses, Google-, Facebook- and Twitter accounts (or any other social account)
+- The authorization parts could come handy when speaking roles like: **admin**, **organizer**, **staff**, **voluntary** and other roles.
+  - at first, every user has a base role, and after an event is created by himself/herself, the **organizer** role will be assigned to him/her, who could assign more people to this or the lower roles
+  - people with **admin** role could alter all the data entered in the application
+- This could be achieved using already made services, for example **Firebase** Authentication and Authorization support.
+
+## Live feed service (_event driven_)
+
+- There could be live stories, forum, comments, videos, pictures relating to the actual event.
+  - comment and image stream like on Twitter
+- There will be group chats for newly forming social/friend groups.
+  - group chat types: **event-type based** or **event based** chats
+- There would be some QR codes on the event site, where people can take group photos or videos and then share it to the common group/event feed of the event.
+  - there would be some limitations like the maximum number of uploaded pictures per user (for example 5 images) for handling unexpected data growth
+    - this also ensures that the text-image ratio is balanced on the live feed of the event
+
+## Supporting service (_microservice_)
+
+- Lets organizers to make polls and forms about an event or a series of events.
+  - this makes possible to discover user wills and needs
+    - i.e preferred musics, performers, timings, drinks, foods,
+  - polls can be created
+- FAQ (Frequently Asked Questions) section.
+  - here a LLM (Large Language Model) can be used like _llama2_
+- Forum.
+- The sponsors of the event.
+  - for example when registering a festival
+
+## Gamification service (_microservice_)
+
+- Leaderboard, badges (can be achieved for completing certain tasks or challenges), giveaways, contests etc.
+
+## Location service (_event driven_)
+
+- This service ensures that each person in the group finds the others, if they were separated for some reason.
+  - this could use a live map, or a QR code based map, where the codes would be placed on common (previously) known places
+- This could use services like Google Maps API, or even location information inside a building.
+- Offline availability.
